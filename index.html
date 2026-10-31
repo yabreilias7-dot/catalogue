@@ -1,195 +1,117 @@
 <!DOCTYPE html>
-<html lang="fr"><head>
+<html lang="fr">
+<head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mon catalogue en ligne</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mon catalogue</title>
 <style>
-:root{--bg:#F1F6F1;--s:#FFFFFF;--ink:#14281D;--mut:#4F6657;--line:#CFDDD2;--wa:#127A3F;--waink:#FFFFFF;--tag:#FFD23F;--taginK:#2B2100;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
-@media (prefers-color-scheme:dark){:root{--bg:#0F1B14;--s:#18291F;--ink:#EAF5EC;--mut:#A3BBA9;--line:#2D4535;--wa:#2FC46A;--waink:#06210F;--tag:#FFD23F;--taginK:#2B2100;color-scheme:dark}}
+:root{--bg:#10201a;--s:#1a2e25;--line:#2d4a3a;--ink:#f0f6ee;--mut:#a9c0b0;--wa:#2fc46a;--wak:#06210f;color-scheme:dark}
 *{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS",system-ui,sans-serif;line-height:1.45}
-main{max-width:520px;margin:0 auto;padding:22px 16px calc(120px + env(safe-area-inset-bottom,0px))}
-h1{font-size:2rem;line-height:1.08;margin:0 0 6px;letter-spacing:-.01em}
-h2{font-size:1.1rem;margin:26px 0 10px}
-p{color:var(--mut);margin:0 0 10px}
-label{display:block;font-weight:700;margin:14px 0 6px}
-input{width:100%;border:2px solid var(--line);border-radius:12px;padding:13px;font:inherit;font-size:1.05rem;background:var(--s);color:var(--ink)}
-input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--wa);outline-offset:2px}
-.row{display:grid;grid-template-columns:1fr 112px 44px;gap:8px;margin-bottom:8px}
-.row button{margin:0;padding:0;border-radius:12px;background:var(--s);color:var(--ink);border:2px solid var(--line);font-size:1.2rem}
-button,.btn{display:block;width:100%;margin-top:14px;border:0;border-radius:14px;padding:15px;font:inherit;font-size:1.1rem;font-weight:700;background:var(--wa);color:var(--waink);text-align:center;text-decoration:none;cursor:pointer}
-button.alt,.btn.alt{background:var(--s);color:var(--ink);border:2px solid var(--line)}
-#err{color:#B3261E;font-weight:700;min-height:1.4em;margin-top:10px}
-@media (prefers-color-scheme:dark){#err{color:#FF8A80}}
-#res{display:none;margin-top:20px;padding:16px;border:2px solid var(--wa);border-radius:16px;background:var(--s)}
-#res input{font-size:.9rem}
-.item{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
-.item b{font-size:1.1rem}
-.tag{background:var(--tag);color:var(--taginK);font-weight:800;padding:6px 12px 6px 18px;clip-path:polygon(10px 0,100% 0,100% 100%,10px 100%,0 50%);white-space:nowrap}
-.qty{grid-column:1/3;display:flex;align-items:center;gap:12px}
-.qty button{width:44px;height:44px;margin:0;padding:0;font-size:1.4rem;border-radius:12px;background:var(--s);color:var(--ink);border:2px solid var(--line)}
-.qty span{min-width:1.5em;text-align:center;font-weight:800;font-size:1.1rem}
-#bar{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:2px solid var(--line)}
-#bar .in{max-width:520px;margin:0 auto}
-#bar button{margin:0}
-#bar button:disabled{opacity:.5}
-.foot{margin-top:28px;font-size:.9rem}
-.foot a{color:var(--mut)}
-[hidden]{display:none!important}
-:root{--hero:#0E3B2B;--heroink:#FFF8E6;--wa:#0F6B3E}
-@media (prefers-color-scheme:dark){:root{--hero:#123A2A;--heroink:#FFF8E6;--wa:#2FC46A}}
-h1{font-family:Georgia,"Times New Roman",serif;font-weight:700}
-button,.btn{transition:transform .12s}
-button:active,.btn:active{transform:scale(.97)}
-.hero{margin:-22px -16px 18px;padding:40px 22px 28px;background:var(--hero);color:var(--heroink);border-radius:0 0 30px 30px}
-.hero h1{font-size:2.4rem;margin:0 0 8px;overflow-wrap:anywhere}
-.hero p{color:var(--heroink);opacity:.88;margin:0}
-.item{grid-template-columns:46px 1fr auto;align-items:center;background:var(--s);border:1px solid var(--line);border-radius:20px;padding:14px;margin-bottom:12px}
-.bd{width:46px;height:46px;border-radius:50%;background:var(--hero);color:var(--heroink);display:grid;place-items:center;font-family:Georgia,serif;font-size:1.3rem;font-weight:700}
-.item b{font-size:1.08rem;overflow-wrap:anywhere}
-.qty{grid-column:1/4;justify-content:flex-end;padding-top:6px;border-top:1px dashed var(--line)}
-.tag{font-size:1.02rem}
-#bar{border-top:0;box-shadow:0 -6px 24px rgba(0,0,0,.14)}
-#bar button{padding:17px;font-size:1.12rem;border-radius:16px}
-#make h1{font-size:2.2rem}
-</style></head><body><main>
-
-<section id="make">
-<h1>Créez le catalogue de votre boutique.</h1>
-<p>Vos clients voient vos produits et vos prix, puis commandent par WhatsApp. C’est gratuit. Vos produits restent enregistrés sur ce téléphone, rien n’est envoyé à un serveur.</p>
-<label for="shop">Nom de la boutique</label>
-<input id="shop" maxlength="40" autocomplete="off" placeholder="Boutique Awa">
-<label for="wa">Votre numéro WhatsApp</label>
-<input id="wa" inputmode="tel" maxlength="16" placeholder="70 12 34 56">
-<h2>Vos produits</h2>
-<div id="rows"></div>
-<button type="button" class="alt" id="add">Ajouter un produit</button>
-<button type="button" id="mk">Créer mon catalogue</button>
-<div id="err" role="alert"></div>
-<div id="res">
-<b>Votre catalogue est prêt.</b>
-<p>Envoyez ce lien à vos clients ou mettez-le dans votre statut WhatsApp.</p>
-<input id="lk" readonly>
-<button type="button" id="cp">Copier le lien</button>
-<a class="btn alt" id="sh" target="_blank" rel="noopener">Partager sur WhatsApp</a>
-<a class="btn alt" id="vw">Voir le catalogue</a>
-</div>
-</section>
-
-<section id="shopv" hidden>
-<div class="hero"><h1 id="sn"></h1>
-<p>Choisissez vos produits, puis envoyez la commande par WhatsApp.</p></div>
-<div id="list"></div>
-<p class="foot"><a href="#" id="own">Créer mon propre catalogue</a></p>
-</section>
-
-</main>
-<div id="bar" hidden><div class="in"><button type="button" id="send" disabled>Choisissez un produit</button></div></div>
-
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif;line-height:1.45;padding:22px 16px calc(40px + env(safe-area-inset-bottom,0px));max-width:560px;margin-inline:auto}
+h1{font-family:Georgia,serif;font-size:2.1rem;line-height:1.12;margin:6px 0 10px}
+.mut{color:var(--mut);margin:0 0 18px}
+label{display:block;font-weight:700;margin:18px 0 8px}
+input{width:100%;padding:14px;font:inherit;font-size:1.05rem;background:var(--s);color:var(--ink);border:2px solid var(--line);border-radius:14px}
+input:focus,button:focus-visible{outline:3px solid var(--wa);outline-offset:2px}
+.row{display:flex;gap:10px}
+.item{display:flex;gap:10px;align-items:stretch;margin-bottom:12px}
+.ph{flex:0 0 96px;height:96px;border:2px dashed var(--line);border-radius:14px;background:var(--s);display:grid;place-items:center;text-align:center;color:var(--mut);font-size:.9rem;overflow:hidden;cursor:pointer;margin:0;font-weight:400}
+.ph img{width:100%;height:100%;object-fit:cover}
+.f{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.f input{padding:11px 12px}
+.x{flex:0 0 44px;background:var(--s);color:var(--ink);border:2px solid var(--line);border-radius:14px;font-size:1.3rem}
+button{font:inherit;cursor:pointer}
+.main,.ghost{display:block;width:100%;padding:15px;border-radius:14px;font-weight:700;font-size:1.05rem;margin-top:12px}
+.main{background:var(--wa);color:var(--wak);border:0}
+.ghost{background:var(--s);color:var(--ink);border:2px solid var(--line)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}
+.card{background:var(--s);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.card .b{padding:10px 10px 12px}
+.card b{display:block;overflow-wrap:anywhere}
+.pr{color:var(--wa);font-weight:700;font-size:1.1rem;margin-top:2px}
+.card button{padding:11px;font-size:.95rem;margin-top:8px}
+@media(max-width:340px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="app"></div>
 <script>
-var $=function(i){return document.getElementById(i)};
-function enc(o){return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
-function dec(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";return JSON.parse(decodeURIComponent(escape(atob(s))))}
-function money(n){return Number(n).toLocaleString("fr-FR")+" F"}
+const $=s=>document.querySelector(s);
+let S={shop:'',cc:'226',phone:'',items:[]};
+try{const r=localStorage.getItem('cat2');if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+const save=()=>{try{localStorage.setItem('cat2',JSON.stringify(S))}catch(e){alert('Mémoire pleine : supprimez une photo ou un produit.')}};
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=p=>p?Number(p).toLocaleString('fr-FR')+' F':'';
+const num=()=>(S.cc+S.phone).replace(/\D/g,'');
 
-/* ---------- Création ---------- */
-function addRow(n,p){
-  var r=document.createElement("div");r.className="row";
-  var a=document.createElement("input");a.placeholder="Produit (ex. Riz 5 kg)";a.maxLength=40;a.value=n||"";a.setAttribute("aria-label","Nom du produit");
-  var b=document.createElement("input");b.placeholder="Prix en F";b.inputMode="numeric";b.maxLength=9;b.value=p||"";b.setAttribute("aria-label","Prix en francs CFA");
-  var x=document.createElement("button");x.type="button";x.textContent="×";x.setAttribute("aria-label","Retirer ce produit");
-  x.addEventListener("click",function(){r.remove();save()});
-  r.appendChild(a);r.appendChild(b);r.appendChild(x);$("rows").appendChild(r);
+function compress(file,cb){
+  const r=new FileReader();
+  r.onload=()=>{const im=new Image();
+    im.onload=()=>{const m=600,k=Math.min(1,m/Math.max(im.width,im.height));
+      const c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;
+      c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.72))};
+    im.src=r.result};
+  r.readAsDataURL(file);
 }
-var KEY="catalogue-brouillon";
-function save(){
+
+function edit(){
+  $('#app').innerHTML=`<h1>Créez le catalogue de votre boutique.</h1>
+  <p class="mut">Ajoutez vos produits avec une photo et un prix. Vos clients commandent par WhatsApp. Tout reste enregistré sur ce téléphone.</p>
+  <label for="shop">Nom de la boutique</label>
+  <input id="shop" placeholder="Boutique Awa" value="${esc(S.shop)}">
+  <label for="ph">Indicatif du pays et numéro WhatsApp</label>
+  <div class="row"><input id="cc" inputmode="numeric" style="max-width:92px" value="${esc(S.cc)}" aria-label="Indicatif"><input id="ph" inputmode="tel" placeholder="70 12 34 56" value="${esc(S.phone)}"></div>
+  <label>Vos produits</label><div id="list"></div>
+  <button class="ghost" id="add">Ajouter un produit</button>
+  <button class="main" id="go">Voir mon catalogue</button>`;
+  $('#shop').oninput=e=>{S.shop=e.target.value;save()};
+  $('#cc').oninput=e=>{S.cc=e.target.value;save()};
+  $('#ph').oninput=e=>{S.phone=e.target.value;save()};
+  S.items.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='item';
+    d.innerHTML=`<label class="ph">${it.img?`<img src="${it.img}" alt="">`:'<span>Ajouter<br>une photo</span>'}<input type="file" accept="image/*" hidden></label>
+    <div class="f"><input class="n" placeholder="Produit (ex. Robe wax)" value="${esc(it.name)}"><input class="p" inputmode="numeric" placeholder="Prix en F" value="${esc(it.price)}"></div>
+    <button class="x" aria-label="Supprimer">×</button>`;
+    d.querySelector('.n').oninput=e=>{it.name=e.target.value;save()};
+    d.querySelector('.p').oninput=e=>{it.price=e.target.value.replace(/\D/g,'');e.target.value=it.price;save()};
+    d.querySelector('input[type=file]').onchange=e=>{const f=e.target.files[0];if(f)compress(f,u=>{it.img=u;save();edit()})};
+    d.querySelector('.x').onclick=()=>{S.items.splice(i,1);save();edit()};
+    $('#list').appendChild(d);
+  });
+  $('#add').onclick=()=>{S.items.push({name:'',price:'',img:''});save();edit()};
+  $('#go').onclick=()=>{
+    if(!S.items.length){alert('Ajoutez au moins un produit.');return}
+    if(!num()){alert('Entrez votre numéro WhatsApp pour recevoir les commandes.');return}
+    view();
+  };
+  if(!S.items.length){S.items.push({name:'',price:'',img:''});edit()}
+}
+
+async function share(it){
+  const t=`${it.name||'Produit'} - ${fmt(it.price)}\nPour commander, écrivez-moi sur WhatsApp : https://wa.me/${num()}`;
   try{
-    var items=[];
-    Array.prototype.forEach.call($("rows").children,function(r){items.push([r.children[0].value,r.children[1].value])});
-    localStorage.setItem(KEY,JSON.stringify({n:$("shop").value,w:$("wa").value,p:items}));
-  }catch(e){}
+    if(it.img){const b=await (await fetch(it.img)).blob();const f=new File([b],'produit.jpg',{type:'image/jpeg'});
+      if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:t});return}}
+    if(navigator.share){await navigator.share({text:t});return}
+  }catch(e){if(e&&e.name==='AbortError')return}
+  window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');
 }
-function restore(){
-  var d=null;
-  try{d=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
-  if(d){$("shop").value=d.n||"";$("wa").value=d.w||"";(d.p||[]).forEach(function(it){addRow(it[0],it[1])})}
-  if(!$("rows").children.length){addRow();addRow();addRow()}
-}
-restore();
-$("make").addEventListener("input",save);
-$("add").addEventListener("click",function(){if($("rows").children.length<40)addRow()});
 
-$("mk").addEventListener("click",function(){
-  var err=$("err");err.textContent="";
-  var name=$("shop").value.trim();
-  var ph=$("wa").value.replace(/\D/g,"");
-  if(ph.length===8)ph="226"+ph;
-  if(!name){err.textContent="Écrivez le nom de votre boutique.";return}
-  if(ph.length<10){err.textContent="Écrivez votre numéro WhatsApp, par exemple 70 12 34 56.";return}
-  var items=[];
-  Array.prototype.forEach.call($("rows").children,function(r){
-    var n=r.children[0].value.trim(),p=parseInt(r.children[1].value.replace(/\D/g,""),10);
-    if(n&&p>0)items.push([n,p]);
+function view(){
+  $('#app').innerHTML=`<h1>${esc(S.shop||'Mon catalogue')}</h1>
+  <p class="mut">Touchez « Commander » pour écrire sur WhatsApp, ou « Partager » pour envoyer la photo et le prix.</p>
+  <div class="grid">${S.items.map((it,i)=>`<div class="card">${it.img?`<img src="${it.img}" alt="${esc(it.name)}">`:''}<div class="b"><b>${esc(it.name||'Produit')}</b><div class="pr">${fmt(it.price)}</div><button class="main" data-o="${i}">Commander</button><button class="ghost" data-s="${i}">Partager</button></div></div>`).join('')}</div>
+  <button class="ghost" id="back">Modifier mon catalogue</button>`;
+  document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{
+    const it=S.items[b.dataset.o];
+    window.open(`https://wa.me/${num()}?text=`+encodeURIComponent(`Bonjour, je voudrais commander : ${it.name||'Produit'} (${fmt(it.price)})`),'_blank');
   });
-  if(!items.length){err.textContent="Ajoutez au moins un produit avec son prix.";return}
-  var link=location.href.split("#")[0]+"#c="+enc({n:name,w:ph,p:items});
-  $("lk").value=link;
-  $("sh").href="https://wa.me/?text="+encodeURIComponent("Voici le catalogue de "+name+" : "+link);
-  $("vw").href=link;
-  $("res").style.display="block";
-  $("res").scrollIntoView({behavior:"smooth",block:"nearest"});
-});
-$("cp").addEventListener("click",function(){
-  var f=$("lk");f.select();f.setSelectionRange(0,99999);
-  var ok=function(){$("cp").textContent="Lien copié"};
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(f.value).then(ok,function(){document.execCommand("copy");ok()})}
-  else{document.execCommand("copy");ok()}
-});
+  document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>share(S.items[b.dataset.s]));
+  $('#back').onclick=edit;
+}
 
-/* ---------- Page client ---------- */
-var cart=[];
-function total(){return cart.reduce(function(t,q,i){return t+q*data.p[i][1]},0)}
-function refresh(){
-  var cnt=cart.reduce(function(a,b){return a+b},0),btn=$("send");
-  btn.disabled=cnt===0;
-  btn.textContent=cnt?"Commander par WhatsApp · "+money(total()):"Choisissez un produit";
-}
-var data=null;
-function showShop(d){
-  data=d;cart=d.p.map(function(){return 0});
-  document.title=d.n;$("sn").textContent=d.n;
-  var list=$("list");list.innerHTML="";
-  d.p.forEach(function(it,i){
-    var w=document.createElement("div");w.className="item";
-    var nm=document.createElement("b");nm.textContent=it[0];
-    var tg=document.createElement("span");tg.className="tag";tg.textContent=money(it[1]);
-    var q=document.createElement("div");q.className="qty";
-    var m=document.createElement("button");m.type="button";m.textContent="−";m.setAttribute("aria-label","Retirer un "+it[0]);
-    var c=document.createElement("span");c.textContent="0";c.setAttribute("aria-live","polite");
-    var p=document.createElement("button");p.type="button";p.textContent="+";p.setAttribute("aria-label","Ajouter un "+it[0]);
-    m.addEventListener("click",function(){if(cart[i]>0){cart[i]--;c.textContent=cart[i];refresh()}});
-    p.addEventListener("click",function(){if(cart[i]<99){cart[i]++;c.textContent=cart[i];refresh()}});
-    q.appendChild(m);q.appendChild(c);q.appendChild(p);
-    var bd=document.createElement("span");bd.className="bd";bd.setAttribute("aria-hidden","true");bd.textContent=(it[0].trim().charAt(0)||"•").toUpperCase();
-    w.appendChild(bd);w.appendChild(nm);w.appendChild(tg);w.appendChild(q);list.appendChild(w);
-  });
-  refresh();
-}
-$("send").addEventListener("click",function(){
-  var lines=["Bonjour, je voudrais commander :"];
-  data.p.forEach(function(it,i){if(cart[i])lines.push("- "+cart[i]+" x "+it[0]+" ("+money(it[1]*cart[i])+")")});
-  lines.push("Total : "+money(total()));
-  window.open("https://wa.me/"+data.w+"?text="+encodeURIComponent(lines.join("\n")),"_blank");
-});
-$("own").addEventListener("click",function(e){e.preventDefault();history.pushState(null,"",location.pathname+location.search);route()});
-
-function route(){
-  var h=location.hash,d=null;
-  if(h.indexOf("#c=")===0){try{d=dec(h.slice(3));if(!d||!d.p||!d.w)d=null}catch(e){d=null}}
-  $("make").hidden=!!d;$("shopv").hidden=!d;$("bar").hidden=!d;
-  if(d)showShop(d);
-}
-window.addEventListener("hashchange",route);
-route();
-</script></body></html>
+edit();
+</script>
+</body>
+</html>
