@@ -38,12 +38,15 @@ button{font:inherit;cursor:pointer}
 <div id="app"></div>
 <script>
 const $=s=>document.querySelector(s);
-let S={shop:'',cc:'226',phone:'',items:[]};
+let S={shop:'',cc:'226',phone:'',code:'',items:[]};
 try{const r=localStorage.getItem('cat2');if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
 const save=()=>{try{localStorage.setItem('cat2',JSON.stringify(S))}catch(e){alert('Mémoire pleine : supprimez une photo ou un produit.')}};
 const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmt=p=>p?Number(p).toLocaleString('fr-FR')+' F':'';
 const num=()=>(S.cc+S.phone).replace(/\D/g,'');
+const CONTACT='',PRICE='2 000 F',FREE=5;
+const mk=n=>{let h=7;const s=n+'awa-k7-2026';for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))%1000000;return String(h).padStart(6,'0')};
+const prem=()=>!!S.code&&S.code===mk(num());
 
 function compress(file,cb){
   const r=new FileReader();
@@ -63,8 +66,11 @@ function edit(){
   <label for="ph">Indicatif du pays et numéro WhatsApp</label>
   <div class="row"><input id="cc" inputmode="numeric" style="max-width:92px" value="${esc(S.cc)}" aria-label="Indicatif"><input id="ph" inputmode="tel" placeholder="70 12 34 56" value="${esc(S.phone)}"></div>
   <label>Vos produits</label><div id="list"></div>
-  <button class="ghost" id="add">Ajouter un produit</button>
+  <button class="ghost" id="add">Ajouter un produit</button><div id="pm"></div>
   <button class="main" id="go">Voir mon catalogue</button>`;
+  $('#pm').innerHTML=prem()?'<p class="mut">Version illimitée activée.</p>':`<p class="mut">Version gratuite : ${FREE} produits maximum. Pour en ajouter plus, entrez votre code d’activation.</p><div class="row"><input id="code" inputmode="numeric" placeholder="Code à 6 chiffres"><button class="ghost" id="ok" style="width:auto;margin-top:0">Activer</button></div>${CONTACT?'<button class="ghost" id="buy">Obtenir un code ('+PRICE+')</button>':''}`;
+  if(!prem()){$('#ok').onclick=()=>{S.code=$('#code').value.trim();if(prem()){save();edit()}else{S.code='';alert('Code incorrect. Vérifiez le code et votre numéro WhatsApp.')}};
+    if(CONTACT)$('#buy').onclick=()=>window.open('https://wa.me/'+CONTACT+'?text='+encodeURIComponent('Bonjour, je veux la version illimitée. Mon numéro WhatsApp : '+num()),'_blank')}
   $('#shop').oninput=e=>{S.shop=e.target.value;save()};
   $('#cc').oninput=e=>{S.cc=e.target.value;save()};
   $('#ph').oninput=e=>{S.phone=e.target.value;save()};
@@ -79,7 +85,7 @@ function edit(){
     d.querySelector('.x').onclick=()=>{S.items.splice(i,1);save();edit()};
     $('#list').appendChild(d);
   });
-  $('#add').onclick=()=>{S.items.push({name:'',price:'',img:''});save();edit()};
+  $('#add').onclick=()=>{if(S.items.length>=FREE&&!prem()){alert('Limite de '+FREE+' produits atteinte. Entrez un code d’activation pour en ajouter plus.');return}S.items.push({name:'',price:'',img:''});save();edit()};
   $('#go').onclick=()=>{
     if(!S.items.length){alert('Ajoutez au moins un produit.');return}
     if(!num()){alert('Entrez votre numéro WhatsApp pour recevoir les commandes.');return}
