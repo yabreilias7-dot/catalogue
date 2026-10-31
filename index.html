@@ -1,3 +1,4 @@
+fois.
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -44,7 +45,7 @@ const save=()=>{try{localStorage.setItem('cat2',JSON.stringify(S))}catch(e){aler
 const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmt=p=>p?Number(p).toLocaleString('fr-FR')+' F':'';
 const num=()=>(S.cc+S.phone).replace(/\D/g,'');
-const CONTACT='',PRICE='2 000 F',FREE=5;
+const CONTACT='22644015176',PRICE='2 000 F',FREE=5;
 const mk=n=>{let h=7;const s=n+'awa-k7-2026';for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))%1000000;return String(h).padStart(6,'0')};
 const prem=()=>!!S.code&&S.code===mk(num());
 
